@@ -1,0 +1,18 @@
+python-3.9.13.exe /quiet PrependPath=1 Include_pip=1
+python-3.9.13-amd64.exe /quiet PrependPath=1 Include_pip=1
+
+vc_redist.x86.exe /quiet /norestart
+vc_redist.x64.exe /quiet /norestart
+
+py -3.9-32 -m pip install --no-index --find-links=. pykd keystone-engine
+py -3.9-64 -m pip install --no-index --find-links=. pykd keystone-engine
+
+mkdir C:\Tools\mona3
+copy mona3\mona.py C:\Tools\mona3\
+copy mona3\windbglib.py C:\Tools\mona3\
+
+mkdir "%LOCALAPPDATA%\DBG\EngineExtensions32\"
+mkdir "%LOCALAPPDATA%\DBG\EngineExtensions\"
+
+copy pykd-ext-x86\pykd.dll "%LOCALAPPDATA%\DBG\EngineExtensions32\"
+copy pykd-ext-x64\pykd.dll "%LOCALAPPDATA%\DBG\EngineExtensions\"
